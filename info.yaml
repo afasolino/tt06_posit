@@ -2,8 +2,8 @@
 project:
   title:        "integer to Posit converter "      # Project title
   author:       "A. Fasolino, G.D. Licciardo, A. Torino, F. Del Prete, C. Parrella"      # Your name
-  discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
+  discord:      "andreafasolino_78028"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
+  description:  "Our module executes a fixed to posit conversion and an addition"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     30000000       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -11,11 +11,19 @@ project:
   tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_afasolino"
   
   # List your project's source files here. Source files must be in ./src and you must list each source file separately, one per line:
   source_files:        
-    - "project.v"
+    - "add.v"
+    - "data_posit_encoder.v"
+    - "Fixed16toPosit16.v"
+    - "LeadingZeroCounter_16b.v"
+    - "normalizer_16.v"
+    - "posit_top_open_hw.v"
+    - "right_shifter_sticky_16.v"
+    - "right_shifter_sticky_18.v"
+    - "tt_um_afasolino.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 pinout:
