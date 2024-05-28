@@ -52,7 +52,7 @@ async def test_project(dut):
     # set data valid = 0
     dut.uio_in.value = 0
     
-    await ClockCycles(dut.clk, 3)
+    await ClockCycles(dut.clk, 4)
 
     #########################################
     # Set 23:15 bits to 30
@@ -91,6 +91,6 @@ async def test_project(dut):
     # check if the input data is correctly written in the input buffer and if it can be read from the output buffer
     assert dut.uo_out.value == 20
     
-    await ClockCycles(dut.clk, 3)
+    await ClockCycles(dut.clk, 4)
 
 
