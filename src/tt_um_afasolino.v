@@ -3,8 +3,9 @@
 * SPDX-License-Identifier: Apache-2.0
 */
 //////////////////////////////////////////////////////////////////////////////////
-// Company: University of Salerno, Fisciano (SA), Italy
-// Engineer: Andrea Fasolino, Gian Domenico Licciardo
+// Companies: (a) University of Salerno, Fisciano (SA), Italy; 
+//            (b) STMicroelectronics, Napoli (NA), Italy.
+// Engineer: Andrea Fasolino (a), Gian Domenico Licciardo (a), Aldo Torino (b), Francesco Del Prete (b), Claudio Parrella (b).
 // 
 // Module Name: tt_um_afasolino
 // 
