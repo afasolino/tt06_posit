@@ -25,6 +25,8 @@ The conversion is operated as described in [1], leveraging a leading zero counte
 2.
 The addition leverages the architecture presented in [3].
 
+References
+
 [1] J. Gustafson. "Posit arithmetic." Mathematica Notebook describing the posit number system, 2017.
 
 [2] Milenković, Nebojša & Stankovic, Vladimir & Milić, Miljana. (2015). Modular Design Of Fast Leading Zeros Counting Circuit. Journal of Electrical Engineering. 66. 329-333. 10.2478/jee-2015-0054. 
