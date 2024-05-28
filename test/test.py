@@ -32,7 +32,7 @@ async def test_project(dut):
     # set data valid = 1
     dut.uio_in.value = 1
 
-    await ClockCycles(dut.clk, 3)
+    await ClockCycles(dut.clk, 4)
     # check alu ready == 0
     assert dut.uio_out.value == 0
     # set data valid = 0
