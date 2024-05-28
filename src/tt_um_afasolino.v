@@ -6,9 +6,7 @@
 // Company: University of Salerno, Fisciano (SA), Italy
 // Engineer: Andrea Fasolino, Gian Domenico Licciardo
 // 
-// Create Date: 14.05.2024 11:54:36
-// Module Name: Fixed16toPosit16
-// Project Name: Converter from fixed-point point to posit
+// Module Name: tt_um_afasolino
 // 
 // 
 // Revision 0.01 - File Created
