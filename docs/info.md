@@ -17,8 +17,10 @@ It is made of two units:
 1) 16-bit 2's complement fixed-point 0.15 coded to 16-bit standard posit (16,1) converter, namely fixed to posit converter;
 2) posit adder, that executes the addition of posit numbers according to the posit standard.
 
+
 1.
 The conversion is operated as described in [1], leveraging a leading zero counter [2] and some glue logic.
+
 
 2.
 The addition leverages the architecture presented in [3].
