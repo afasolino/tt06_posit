@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:
   title:        "integer to Posit converter "      # Project title
-  author:       "A. Fasolino, G.D. Licciardo, A. Torino, F. Del Prete, C. Parrella"      # Your name
+  author:       "A. Fasolino, G.D. Licciardo"      # Your name
   discord:      "andreafasolino_78028"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
   description:  "Our module executes a fixed to posit conversion and an addition"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
