@@ -1,18 +1,4 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: University of Salerno, Fisciano (SA), Italy
-// Engineer: Andrea Fasolino, Gian Domenico Licciardo
-// 
-// Create Date: 14.05.2024 11:54:36
-// Module Name: Fixed16toPosit16
-// Project Name: Converter from fixed-point point to posit
-// 
-// 
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
 
 module Fixed16toPosit16(
     input [15:0]    fixed_number_input,
