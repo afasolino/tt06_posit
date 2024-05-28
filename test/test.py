@@ -24,18 +24,73 @@ async def test_project(dut):
     dut.rst_n.value = 1
 
     dut._log.info("Test project behavior")
-
-    # Set the input values you want to test
+#########################################
+    # Set 7:0 bits to 20
     dut.ui_in.value = 20
-    dut.uio_in.value = 30
+    # check alu ready == 1
+    assert dut.uio_out.value == 2
+    # set data valid = 1
+    dut.uio_in.value = 1
 
-    # Wait for one clock cycle to see the output values
+    await ClockCycles(dut.clk, 1)
+    # check alu ready == 0
+    assert dut.uio_out.value == 0
+    # set data valid = 0
+    dut.uio_in.value = 0
+    
+    await ClockCycles(dut.clk, 1)
+    # Set 15:8 bits to 0
+    dut.ui_in.value = 0
+    # check alu ready == 1
+    assert dut.uio_out.value == 2
+    # set data valid = 0
+    dut.uio_in.value = 1
+    
+    await ClockCycles(dut.clk, 1)
+    # check alu ready == 0
+    assert dut.uio_out.value == 0
+    # set data valid = 0
+    dut.uio_in.value = 0
+    
     await ClockCycles(dut.clk, 1)
 
-    # The following assersion is just an example of how to check the output values.
-    # Change it to match the actual expected output of your module:
-    assert dut.uo_out.value == 0
-    
+    #########################################
+    # Set 23:15 bits to 30
+    dut.ui_in.value = 30
+    # check alu ready == 1
+    assert dut.uio_out.value == 2
+    # set data valid = 1
+    dut.uio_in.value = 1
 
-    # Keep testing the module by changing the input values, waiting for
-    # one or more clock cycles, and asserting the expected output values.
+    await ClockCycles(dut.clk, 1)
+    # check alu ready == 0
+    assert dut.uio_out.value == 0
+    # set data valid = 0
+    dut.uio_in.value = 0
+    
+    await ClockCycles(dut.clk, 1)
+    # Set 31:24 bits to 0
+    dut.ui_in.value = 0
+    # check alu ready == 1
+    assert dut.uio_out.value == 2
+    # set data valid = 0
+    dut.uio_in.value = 1
+    
+    await ClockCycles(dut.clk, 1)
+    # check alu ready == 0
+    assert dut.uio_out.value == 0
+    # set data valid = 0
+    dut.uio_in.value = 0
+    
+    await ClockCycles(dut.clk, 1)
+########################################
+    
+    # check read data ready== 1
+    assert dut.uio_out.value == 8
+
+    # check if the input data is correctly written in the input buffer and if it can be read from the output buffer
+    assert dut.uo_out.value == 20
+    
+    await ClockCycles(dut.clk, 1)
+
+
