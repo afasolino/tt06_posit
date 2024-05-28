@@ -38,7 +38,7 @@ async def test_project(dut):
     # set data valid = 0
     dut.uio_in.value = 0
     
-    await ClockCycles(dut.clk, 3)
+    await ClockCycles(dut.clk, 4)
     # Set 15:8 bits to 0
     dut.ui_in.value = 0
     # check alu ready == 1
@@ -46,7 +46,7 @@ async def test_project(dut):
     # set data valid = 0
     dut.uio_in.value = 1
     
-    await ClockCycles(dut.clk, 3)
+    await ClockCycles(dut.clk, 4)
     # check alu ready == 0
     assert dut.uio_out.value == 0
     # set data valid = 0
@@ -62,13 +62,13 @@ async def test_project(dut):
     # set data valid = 1
     dut.uio_in.value = 1
 
-    await ClockCycles(dut.clk, 3)
+    await ClockCycles(dut.clk, 4)
     # check alu ready == 0
     assert dut.uio_out.value == 0
     # set data valid = 0
     dut.uio_in.value = 0
     
-    await ClockCycles(dut.clk, 3)
+    await ClockCycles(dut.clk, 4)
     # Set 31:24 bits to 0
     dut.ui_in.value = 0
     # check alu ready == 1
@@ -76,13 +76,13 @@ async def test_project(dut):
     # set data valid = 0
     dut.uio_in.value = 1
     
-    await ClockCycles(dut.clk, 3)
+    await ClockCycles(dut.clk, 4)
     # check alu ready == 0
     assert dut.uio_out.value == 0
     # set data valid = 0
     dut.uio_in.value = 0
     
-    await ClockCycles(dut.clk, 3)
+    await ClockCycles(dut.clk, 4)
 ########################################
     
     # check read data ready== 1
