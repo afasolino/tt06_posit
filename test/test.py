@@ -77,16 +77,15 @@ async def test_project(dut):
     dut.uio_in.value = 1
     
     await ClockCycles(dut.clk, 4)
-    # check alu ready == 0
-    assert dut.uio_out.value == 0
+    #######################################
+    # finish of the operands storing, check read data ready== 1 
+    assert dut.uio_out.value == 8
+    #######################################
     # set data valid = 0
     dut.uio_in.value = 0
     
     await ClockCycles(dut.clk, 4)
-########################################
-    
-    # check read data ready== 1
-    assert dut.uio_out.value == 8
+#########################################
 
     # check if the input data is correctly written in the input buffer and if it can be read from the output buffer
     assert dut.uo_out.value == 20
