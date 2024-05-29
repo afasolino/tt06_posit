@@ -86,7 +86,7 @@ async def test_project(dut):
 
 
     # check if the input data is correctly written in the input buffer and if it can be read from the output buffer
-    await ClockCycles(dut.clk, 12)
+    await ClockCycles(dut.clk, 8)
 
     assert dut.uio_out.value == 8
     assert dut.uo_out.value == 20
@@ -95,7 +95,7 @@ async def test_project(dut):
     
     assert dut.uio_out.value == 0
     dut.uio_in.value = 0
-    await ClockCycles(dut.clk, 4)
+    await ClockCycles(dut.clk, 8)
 
     assert dut.uio_out.value == 8
     dut._log.info("The result is: %d" % dut.uo_out.value)
