@@ -14,7 +14,7 @@ The module (Fig. 1) is fed by two fixed-point numbers, namely af and bf, coverts
 ![fixed2posit-module drawio](https://github.com/afasolino/tt06_posit/assets/151364130/2e2fa7f1-4080-490b-bbb9-8ac1b462cae2)
 
 It is made of two units: 
-1) 16-bit 2's complement fixed-point 0.15 coded to 16-bit standard posit (16,1) converter, namely fixed to posit converter;
+1) 16-bit 2's complement fixed-point 0.15 coded to 16-bit standard posit (16,1) converter, namely fixed to posit converter,
 2) posit adder, that executes the addition of posit numbers according to the posit standard.
 
 
