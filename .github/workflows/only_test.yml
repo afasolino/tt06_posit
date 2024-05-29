@@ -13,3 +13,5 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+      - name: GL test
+        uses: TinyTapeout/tt-gds-action/gl_test@tt07
