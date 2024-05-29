@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 
 module Fixed16toPosit16(
     input [15:0]    fixed_number_input,
