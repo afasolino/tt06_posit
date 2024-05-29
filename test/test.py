@@ -105,7 +105,7 @@ async def test_project(dut):
     await ClockCycles(dut.clk, 4)
 
     dut.uio_in.value = 0
-    await ClockCycles(dut.clk, 4)
+    await ClockCycles(dut.clk, 8)
     
     dut._log.info("The result is: %d" % dut.uo_out.value)
     assert dut.uo_out.value == 30
@@ -114,7 +114,7 @@ async def test_project(dut):
     await ClockCycles(dut.clk, 4)
 
     dut.uio_in.value = 0
-    await ClockCycles(dut.clk, 4)
+    await ClockCycles(dut.clk, 8)
     dut._log.info("The result is: %d" % dut.uo_out.value)
 
     assert dut.uo_out.value == 0
