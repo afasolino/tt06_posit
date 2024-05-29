@@ -1,4 +1,3 @@
-`timescale 1ns / 1ps
 
 module LeadingZeroCounter_16b(
     input  wire [15:0] x,
