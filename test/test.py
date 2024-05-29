@@ -108,14 +108,14 @@ async def test_project(dut):
     await ClockCycles(dut.clk, 4)
     
     #assert dut.uo_out.value == 30
-        dut._log.info("Use of %d attribute is deprecated" % dut.uo_out.value)
+    dut._log.info("Use of %d attribute is deprecated" % dut.uo_out.value)
 
     dut.uio_in.value = 4
     await ClockCycles(dut.clk, 4)
 
     dut.uio_in.value = 0
     await ClockCycles(dut.clk, 4)
-            dut._log.info("Use of %d attribute is deprecated" % dut.uo_out.value)
+    dut._log.info("Use of %d attribute is deprecated" % dut.uo_out.value)
 
     #assert dut.uo_out.value == 0
     dut.uio_in.value = 4
