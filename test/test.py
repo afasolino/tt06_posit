@@ -90,27 +90,27 @@ async def test_project(dut):
     
     assert dut.uio_out.value == 8
     assert dut.uo_out.value == 20
-    dut.ui_in.value = 4
+    dut.uio_in.value = 4
     await ClockCycles(dut.clk, 4)
     
     assert dut.uio_out.value == 0
-    dut.ui_in.value = 0
+    dut.uio_in.value = 0
     await ClockCycles(dut.clk, 4)
 
     assert dut.uio_out.value == 8
     assert dut.uo_out.value == 0
-    dut.ui_in.value = 4
+    dut.uio_in.value = 4
     await ClockCycles(dut.clk, 4)
 
-    dut.ui_in.value = 0
+    dut.uio_in.value = 0
     await ClockCycles(dut.clk, 4)
     
     assert dut.uo_out.value == 30
-    dut.ui_in.value = 4
+    dut.uio_in.value = 4
     await ClockCycles(dut.clk, 4)
 
-    dut.ui_in.value = 0
+    dut.uio_in.value = 0
     await ClockCycles(dut.clk, 4)
     
     assert dut.uo_out.value == 0
-    dut.ui_in.value = 4
+    dut.uio_in.value = 4
