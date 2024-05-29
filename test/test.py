@@ -10,8 +10,8 @@ from cocotb.triggers import ClockCycles
 async def test_project(dut):
     dut._log.info("Start")
 
-    # Set the clock period to 10 us (100 KHz)
-    clock = Clock(dut.clk, 10, units="us")
+    # Set the clock period
+    clock = Clock(dut.clk, 40, units="ns")
     cocotb.start_soon(clock.start())
 
     # Reset
@@ -87,7 +87,8 @@ async def test_project(dut):
 
 
     # check if the input data is correctly written in the input buffer and if it can be read from the output buffer
-    
+    await ClockCycles(dut.clk, 4)
+
     assert dut.uio_out.value == 8
     assert dut.uo_out.value == 20
     dut.uio_in.value = 4
