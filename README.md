@@ -1,10 +1,10 @@
 
 
-## integer to posit converter and posit adder
+## Integer to posit converter and posit adder
 
 
 Posit arithmetic [1] is an alternative numeric representation that tries to overcome some of the problems of floatin-point arithmetic. A posit number (p) is composed of a sign value (s), a regime value (k), an exponent value (e) and a mantissa value (m), as described in the equation below:
-$$p = (-1)^s \times (2^2^es^k) \times 2^e \times (1+m)$$
+$$p = (-1)^s \times (2^{2^{es^k}}) \times 2^e \times (1+m)$$
 This numeric format has been proved to be very effective in applications like Artificial Intelligence and Digital Signal Processing, thanks to the the possibility to represent a wider range of values with respect to a floatin-point number having the same bit-width.
 
 The aim of this project are:
@@ -54,7 +54,10 @@ The steps to read the data are as follows:
   4) repeat to read a[15:8], b[7:0], b[15:8], {s,k,e} of a converted to posit (ap), {s,k,e} of b converted to posit (bp), m [15:8] of ap, m [7:0] of ap, m [15:8] of bp, m [7:0] of bp, sp[7:0] and sp[15:0].
 
 ## Contact info
+
 Companies: (a) University of Salerno, Fisciano (SA), Italy; 
             (b) STMicroelectronics, Napoli, Italy.
+            
 Engineer: Andrea Fasolino (a), Gian Domenico Licciardo (a), Aldo Torino (b), Francesco Del Prete (b), Claudio Parrella (b).
+
 Emails: afasolino@unisa.it, gdlicciardo@unisa.it, aldo.torino@st.com, francesco.delprete@st.com, claudio.parrella@st.com
