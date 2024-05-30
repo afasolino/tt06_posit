@@ -1,6 +1,6 @@
 
 
-## Integer to posit converter and posit adder
+# Integer to posit converter and posit adder
 
 
 Posit arithmetic [1] is an alternative numeric representation that tries to overcome some of the problems of floatin-point arithmetic. A posit number (p) is composed of a sign value (s), a regime value (k), an exponent value (e) and a mantissa value (m), as described in the equation below:
@@ -12,7 +12,7 @@ The aim of this project are:
   -  sum the two operands using the addition stated in the posit arithmetic.
 
 
-## Architecture overview
+## 1. Architecture overview
 
 The module (Fig. 1) is fed by two fixed-point numbers, namely af and bf, coverts them into the posit arithmetic format (ap and bp) and sums them to produce a posit output (sp).
 
@@ -22,15 +22,13 @@ It is made of two units:
 1) 16-bit 2's complement fixed-point 0.15 coded to 16-bit standard posit (16,1) converter, namely fixed to posit converter,
 2) posit adder, that executes the addition of posit numbers according to the posit standard.
 
-
-1.
+### 1.
 The conversion is operated as described in [1], leveraging a leading zero counter [2] and some glue logic.
 
-
-2.
+### 2.
 The addition leverages the architecture presented in [3].
 
-References
+### References
 
 [1] J. Gustafson. "Posit arithmetic." Mathematica Notebook describing the posit number system, 2017.
 
@@ -38,7 +36,7 @@ References
 
 [3] R. Murillo, A. A. Del Barrio and G. Botella, "Customized Posit Adders and Multipliers using the FloPoCo Core Generator," 2020 IEEE International Symposium on Circuits and Systems (ISCAS), 2020, pp. 1-5, doi: 10.1109/ISCAS45731.2020.9180771.
 
-## How to test
+## 2. How to test
 
 Given the comunication protocol implemented, to test the design it is needed to provide the two operands in 8-bit little endian strings.
 The steps to write two two 16-bit operands a and b are as follows:
@@ -53,7 +51,7 @@ The steps to read the data are as follows:
   3) wait for 8 clock cycles;
   4) repeat to read a[15:8], b[7:0], b[15:8], {s,k,e} of a converted to posit (ap), {s,k,e} of b converted to posit (bp), m [15:8] of ap, m [7:0] of ap, m [15:8] of bp, m [7:0] of bp, sp[7:0] and sp[15:0].
 
-## Contact info
+## 3. Contact info
 
 Companies: (a) University of Salerno, Fisciano (SA), Italy; 
             (b) STMicroelectronics, Napoli, Italy.
