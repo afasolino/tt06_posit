@@ -3,7 +3,7 @@
 # Integer to posit converter and posit adder
 
 
-Posit arithmetic [1] is an alternative numeric representation that tries to overcome some of the problems of floatin-point arithmetic. A posit number (p) is composed of a sign value (s), a regime value (k), an exponent value (e) and a mantissa value (m), as described in the equation below:
+Posit arithmetic [1] is an alternative numeric representation that tries to overcome some of the problems of floating-point arithmetic. A posit number (p) is composed of a sign value (s), a regime value (k), an exponent value (e) and a mantissa value (m), as described in the equation below:
 $$p = (-1)^s \times (2^{2^{es^k}}) \times 2^e \times (1+m)$$
 This numeric format has been proved to be very effective in applications like Artificial Intelligence and Digital Signal Processing, thanks to the the possibility to represent a wider range of values with respect to a floatin-point number having the same bit-width.
 
@@ -14,7 +14,7 @@ The aim of this project are:
 
 ## 1. Architecture overview
 
-The module (Fig. 1) is fed by two fixed-point numbers, namely af and bf, coverts them into the posit arithmetic format (ap and bp) and sums them to produce a posit output (sp).
+The module (Fig. 1) is fed by two fixed-point numbers, namely $a_f$ and $b_f$, coverts them into the posit arithmetic format ($a_p$ and $b_p$) and sums them to produce a posit output ($s_p$).
 
 ![fixed2posit-module drawio](https://github.com/afasolino/tt06_posit/assets/151364130/2e2fa7f1-4080-490b-bbb9-8ac1b462cae2)
 
@@ -39,17 +39,17 @@ The addition leverages the architecture presented in [3].
 ## 2. How to test
 
 Given the comunication protocol implemented, to test the design it is needed to provide the two operands in 8-bit little endian strings.
-The steps to write two two 16-bit operands a and b are as follows:
-  1)  give the a[7:0] and assert data valid;
+The steps to write two two 16-bit operands $a_f$ and $b_f$ are as follows:
+  1)  give the $a_f$[7:0] and assert data valid;
   2)  wait for 4 clock cycles and deassert data valid;
   3)  wait for 4 clock cycles;
-  4)  repeat with a[15:8], b[7:0] and b[15:8]
+  4)  repeat with $a_f$[15:8], $b_f$[7:0] and $b_f$[15:8]
 
 The steps to read the data are as follows:
   1) assert read data valid and read the first operand LSBs, a[7:0];
   2) wait for 4 clock cycles and deassert read data valid;
   3) wait for 8 clock cycles;
-  4) repeat to read a[15:8], b[7:0], b[15:8], {s,k,e} of a converted to posit (ap), {s,k,e} of b converted to posit (bp), m [15:8] of ap, m [7:0] of ap, m [15:8] of bp, m [7:0] of bp, sp[7:0] and sp[15:0].
+  4) repeat to read $a_f$[15:8], $b_f$[7:0], $b_f$[15:8], {s,k,e} of a converted to posit ($a_p$), {s,k,e} of b converted to posit ($b_p$), m [15:8] of $a_p$, m [7:0] of $a_p$, m [15:8] of $b_p$, m [7:0] of $b_p$, $s_p$[7:0] and $s_p%[15:0].
 
 ## 3. Contact info
 
