@@ -1,13 +1,13 @@
 module posit_top_open_hw #(parameter  N=16) (
   input wire [N-1:0] i_in_1,
   input wire [N-1:0] i_in_2,
+  output wire [5:0] o_sign_regime_exp_1,
+  output wire [5:0] o_sign_regime_exp_2,
+  output wire [N-5:0] o_mantissa_1,
+  output wire [N-5:0] o_mantissa_2,
   output wire [N-1:0] o_res
 );
-
-
-
-
-
+  
   wire [$clog2(N)+1:0]w_sf_1;
   wire [N-5:0] w_mant_1;
 
@@ -24,12 +24,10 @@ module posit_top_open_hw #(parameter  N=16) (
   wire w_exponent_1;
   wire [3:0]w_regime_value_1;
   wire w_Q_2;
+  wire w_s_res_add;
   wire w_sign_2;
   wire w_exponent_2;
   wire [3:0]w_regime_value_2;
-  wire w_s_res_add;
-
-
 
 Fixed16toPosit16 instFixed16toPosit16_1(
   .fixed_number_input(i_in_1),
@@ -51,6 +49,10 @@ Fixed16toPosit16 instFixed16toPosit16_2(
 
 assign w_sf_1 =(!w_sign_1) ? {1'b1, w_regime_value_1,w_exponent_1}: {1'b1, w_regime_value_1,~w_exponent_1} ;
 assign w_sf_2 =(!w_sign_2) ? {1'b1, w_regime_value_2,w_exponent_2}:  {1'b1, w_regime_value_2,~w_exponent_2};
+assign o_sign_regime_exp_1 = (!w_sign_1) ?  {w_sign_1,w_regime_value_1,w_exponent_1} : {w_sign_1,w_regime_value_1,~w_exponent_1};
+assign o_sign_regime_exp_2 = (!w_sign_2) ?  {w_sign_2,w_regime_value_2,w_exponent_2} : {w_sign_2,w_regime_value_2,~w_exponent_2};
+assign o_mantissa_1 = w_mant_1;
+assign o_mantissa_2 = w_mant_2;
 
   add #(.N(N)) inst_add(
     .i_s_1   (w_sign_1),
@@ -67,12 +69,7 @@ assign w_sf_2 =(!w_sign_2) ? {1'b1, w_regime_value_2,w_exponent_2}:  {1'b1, w_re
     .o_guard (w_guard_res_add),
     .o_sf    (w_sf_res_add),
     .o_mant  (w_mant_res_add)
-
-
   );
-
-
-
 
   data_posit_encoder #(.N(N)) inst_data_posit_encoder
     (  .i_mant  (w_mant_res_add),
@@ -84,17 +81,5 @@ assign w_sf_2 =(!w_sign_2) ? {1'b1, w_regime_value_2,w_exponent_2}:  {1'b1, w_re
       .i_sticky(w_sticky_res_add),
       .o_r     (o_res)
     );
-
-
-
-
-
-
-
-
-
-
-
-
 
 endmodule
