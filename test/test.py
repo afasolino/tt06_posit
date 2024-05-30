@@ -120,7 +120,6 @@ async def test_project(dut):
     #dut._log.info("The result is: %d" % dut.uo_out.value)
 
     assert dut.uo_out.value == 0
-    dut.uio_in.value = 4
 
 ##############################################################################################################
 #    read the concatenation of sign, regime decimal value and exponent for the converted data, namely ap and bp, on 8 bit each one
