@@ -24,7 +24,8 @@ async def test_project(dut):
     dut.rst_n.value = 1
 
     dut._log.info("Test project behavior")
-    
+    #dut._log.info("The result is: %d" % dut.uo_out.value)
+
 #########################################
 #    write in the input buffer
 ########################################
@@ -94,38 +95,32 @@ async def test_project(dut):
     assert dut.uo_out.value == 20
     dut.uio_in.value = 4
     await ClockCycles(dut.clk, 4)
-    
     assert dut.uio_out.value == 0
     dut.uio_in.value = 0
     await ClockCycles(dut.clk, 8)
 
     assert dut.uio_out.value == 8
-    #dut._log.info("The result is: %d" % dut.uo_out.value)
     assert dut.uo_out.value == 0
-
     dut.uio_in.value = 4
     await ClockCycles(dut.clk, 4)
-
     dut.uio_in.value = 0
     await ClockCycles(dut.clk, 8)
     
-    #dut._log.info("The result is: %d" % dut.uo_out.value)
     assert dut.uo_out.value == 30
-
     dut.uio_in.value = 4
     await ClockCycles(dut.clk, 4)
-
     dut.uio_in.value = 0
     await ClockCycles(dut.clk, 8)
-    #dut._log.info("The result is: %d" % dut.uo_out.value)
 
     assert dut.uo_out.value == 0
-
+    dut.uio_in.value = 4
+    await ClockCycles(dut.clk, 4)
+    dut.uio_in.value = 0
+    await ClockCycles(dut.clk, 8)
+    
 ##############################################################################################################
 #    read the concatenation of sign, regime decimal value and exponent for the converted data, namely ap and bp, on 8 bit each one
 ##############################################################################################################
-
-    await ClockCycles(dut.clk, 8)
 
     assert dut.uio_out.value == 8
     assert dut.uo_out.value == 21
