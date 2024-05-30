@@ -5,7 +5,7 @@
 SIM ?= icarus
 TOPLEVEL_LANG ?= verilog
 SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = tt_um_afasolino.v right_shifter_sticky_18.v right_shifter_sticky_18.v right_shifter_sticky_16.v posit_top_open_hw.v normalizer_16.v LeadingZeroCounter_16b.v Fixed16toPosit16.v data_posit_encoder.v add.v
+PROJECT_SOURCES = tt_um_afasolino.v right_shifter_sticky_18.v right_shifter_sticky_16.v posit_top_open_hw.v normalizer_16.v LeadingZeroCounter_16b.v Fixed16toPosit16.v data_posit_encoder.v add.v
 
 ifneq ($(GATES),yes)
 
