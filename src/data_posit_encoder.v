@@ -62,7 +62,7 @@ module data_posit_encoder #( parameter N=16) (
   assign rnd = shiftedPosit[0];
   assign stk = stkBit | i_sticky;
   assign round = rnd & (lsb | stk | ovf);
-  assign roundedPosit = unroundedPosit + round;
+  assign roundedPosit = unroundedPosit + {14'd0,round};
   
   assign unsignedPosit = (i_nzn) ? roundedPosit : 0;
   assign o_r = { i_s  ,unsignedPosit};
