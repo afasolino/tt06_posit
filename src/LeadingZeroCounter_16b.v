@@ -77,10 +77,10 @@ module Mux_LZC_16b(
 
 always @(*)
   case (s)
-     3'b000: o = i0;
-     3'b001: o = i1;
-     3'b010: o = i2;
-     3'b011: o = i3;
+     2'b00: o = i0;
+     2'b01: o = i1;
+     2'b10: o = i2;
+     2'b11: o = i3;
 
   endcase
       
