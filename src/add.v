@@ -52,13 +52,7 @@ module add #(parameter N=16) (
   wire is_not_zero ;
   wire is_nar;
   wire Xi_nzn_2;
-  wire sign;
   wire [N-5:0]norm_mant ;
-  wire grd ;
-  wire stk ;
-
-  
-
 
   assign X_not_zero = i_s_1 | i_nzn_1;
   assign X_nar      = i_s_1 & ~(i_nzn_1);
@@ -70,7 +64,6 @@ module add #(parameter N=16) (
   assign smallest_number   = (check_larger) ? i_sf_2 : i_sf_1;
   assign larger_mant  = (check_larger) ? {i_s_1 , (~i_s_1 & X_not_zero) ,i_mant_1} : {i_s_2,(~i_s_2 & Y_not_zero),i_mant_2};
   assign smaller_mant = (check_larger) ? {i_s_2,(~i_s_2 & Y_not_zero),i_mant_2} :{i_s_1 , (~i_s_1 & X_not_zero) ,i_mant_1};
-
 
   assign offset         = larger_number - smallest_number;
   assign shift_saturate = (!offset[5]) ? 0 : 1;
