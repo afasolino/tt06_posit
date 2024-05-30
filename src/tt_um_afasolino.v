@@ -15,7 +15,6 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
 `default_nettype none
 
 module tt_um_afasolino (
@@ -29,14 +28,14 @@ module tt_um_afasolino (
   input  wire       rst_n     // reset_n - low to reset
 );
 
-  // All output pins must be assigned. If not used, assign to 0.
+// All output pins must be assigned. If not used, assign to 0.
 //  assign uo_out  = ui_in + uio_in;  // Example: ou_out is the sum of ui_in and uio_in
 //  assign uio_out = 0;
 //  assign uio_oe  = 0;
   localparam  data_buffer_size_bit=8;
   localparam  data_posit_size_bit=16;
   localparam  buffer_size = 4;
-  localparam  buffer_size_read = 6;
+  localparam  buffer_size_read = 12;
   reg alu_ready;
   reg [clog2(buffer_size+1)-1:0] wr_data_pointer;
   reg [clog2(buffer_size_read+1)-1:0] rd_data_pointer;
@@ -54,6 +53,11 @@ module tt_um_afasolino (
   reg read_data_valid_sync2;
   reg read_data;
   wire read_data_valid;
+  wire [5:0]w_sign_regime_exp_1;
+  wire [5:0]w_sign_regime_exp_2;
+  wire [11:0]w_mantissa_1;
+  wire [11:0]w_mantissa_2;
+
   reg read_data_ready;
   reg [7:0]out_reg;
   assign data_input_valid = uio_in[0]; //Data valid on IO in 0
@@ -85,7 +89,6 @@ module tt_um_afasolino (
       read_data_valid_sync1<=read_data_valid;
       read_data_valid_sync2<=read_data_valid_sync1;
     end
-
   end
 
   always@(posedge clk, negedge rst_n)begin
@@ -174,15 +177,57 @@ module tt_um_afasolino (
                 read_data_ready<=0;
               end
             end
-
             'd4: begin
-              out_reg<=o_result[7:0];
+              out_reg<={2'b00,w_sign_regime_exp_1};
               if(read_data_valid_sync2==1) begin
                 rd_data_pointer<=rd_data_pointer+1;
                 read_data_ready<=0;
               end
             end
             'd5: begin
+              out_reg<={2'b00,w_sign_regime_exp_2};
+              if(read_data_valid_sync2==1) begin
+                rd_data_pointer<=rd_data_pointer+1;
+                read_data_ready<=0;
+              end
+            end 
+            'd6: begin
+              out_reg<=w_mantissa_1[7:0];
+              if(read_data_valid_sync2==1) begin
+                rd_data_pointer<=rd_data_pointer+1;
+                read_data_ready<=0;
+              end
+            end
+            'd7: begin
+              out_reg<={4'd0,w_mantissa_1[11:8]};
+              if(read_data_valid_sync2==1) begin
+                rd_data_pointer<=rd_data_pointer+1;
+                read_data_ready<=0;
+              end
+            end 
+            'd8: begin
+              out_reg<=w_mantissa_2[7:0];
+              if(read_data_valid_sync2==1) begin
+                rd_data_pointer<=rd_data_pointer+1;
+                read_data_ready<=0;
+              end
+            end
+            'd9: begin
+              out_reg<={4'd0,w_mantissa_2[11:8]};
+              if(read_data_valid_sync2==1) begin
+                rd_data_pointer<=rd_data_pointer+1;
+                read_data_ready<=0;
+              end
+            end                                      
+
+            'd10: begin
+              out_reg<=o_result[7:0];
+              if(read_data_valid_sync2==1) begin
+                rd_data_pointer<=rd_data_pointer+1;
+                read_data_ready<=0;
+              end
+            end
+            'd11: begin
              out_reg<=o_result[15:8];
               if(read_data_valid_sync2==1) begin
                 read_data_ready<=0;
@@ -206,19 +251,15 @@ module tt_um_afasolino (
     end
   end
 
-
   posit_top_open_hw inst_posit_top(
     .i_in_1(data_input_1),
     .i_in_2(data_input_2),
-    .o_res(o_result)
+    .o_res(o_result),
+    .o_sign_regime_exp_1(w_sign_regime_exp_1),
+    .o_sign_regime_exp_2(w_sign_regime_exp_2),
+    .o_mantissa_1       (w_mantissa_1),
+    .o_mantissa_2       (w_mantissa_2)
   );
-
-
-
-
-
-
-
 
   function integer clog2;
     input integer value;
@@ -228,6 +269,5 @@ module tt_um_afasolino (
         value = value>>1;
     end
   endfunction
-
 
 endmodule
