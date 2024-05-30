@@ -1,41 +1,60 @@
-![](../../workflows/gds/badge.svg) ![](../../workflows/docs/badge.svg) ![](../../workflows/test/badge.svg) ![](../../workflows/fpga/badge.svg)
 
-# Tiny Tapeout Verilog Project Template
 
-- [Read the documentation for project](docs/info.md)
+## integer to posit converter and posit adder
 
-## What is Tiny Tapeout?
 
-Tiny Tapeout is an educational project that aims to make it easier and cheaper than ever to get your digital and analog designs manufactured on a real chip.
+Posit arithmetic [1] is an alternative numeric representation that tries to overcome some of the problems of floatin-point arithmetic. A posit number (p) is composed of a sign value (s), a regime value (k), an exponent value (e) and a mantissa value (m), as described in the equation below:
+$$p = (-1)^s \times (2^2^es^k) \times 2^e \times (1+m)$$
+This numeric format has been proved to be very effective in applications like Artificial Intelligence and Digital Signal Processing, thanks to the the possibility to represent a wider range of values with respect to a floatin-point number having the same bit-width.
 
-To learn more and get started, visit https://tinytapeout.com.
+The aim of this project are:
+  -  convert the integer input data represented in 2's complement signed fixed-point to a standard posit number in (16,1) format;
+  -  sum the two operands using the addition stated in the posit arithmetic.
 
-## Set up your Verilog project
 
-1. Add your Verilog files to the `src` folder.
-2. Edit the [info.yaml](info.yaml) and update information about your project, paying special attention to the `source_files` and `top_module` properties. If you are upgrading an existing Tiny Tapeout project, check out our [online info.yaml migration tool](https://tinytapeout.github.io/tt-yaml-upgrade-tool/).
-3. Edit [docs/info.md](docs/info.md) and add a description of your project.
-4. Adapt the testbench to your design. See [test/README.md](test/README.md) for more information.
+## Architecture overview
 
-The GitHub action will automatically build the ASIC files using [OpenLane](https://www.zerotoasiccourse.com/terminology/openlane/).
+The module (Fig. 1) is fed by two fixed-point numbers, namely af and bf, coverts them into the posit arithmetic format (ap and bp) and sums them to produce a posit output (sp).
 
-## Enable GitHub actions to build the results page
+![fixed2posit-module drawio](https://github.com/afasolino/tt06_posit/assets/151364130/2e2fa7f1-4080-490b-bbb9-8ac1b462cae2)
 
-- [Enabling GitHub Pages](https://tinytapeout.com/faq/#my-github-action-is-failing-on-the-pages-part)
+It is made of two units: 
+1) 16-bit 2's complement fixed-point 0.15 coded to 16-bit standard posit (16,1) converter, namely fixed to posit converter,
+2) posit adder, that executes the addition of posit numbers according to the posit standard.
 
-## Resources
 
-- [FAQ](https://tinytapeout.com/faq/)
-- [Digital design lessons](https://tinytapeout.com/digital_design/)
-- [Learn how semiconductors work](https://tinytapeout.com/siliwiz/)
-- [Join the community](https://tinytapeout.com/discord)
-- [Build your design locally](https://docs.google.com/document/d/1aUUZ1jthRpg4QURIIyzlOaPWlmQzr-jBn3wZipVUPt4)
+1.
+The conversion is operated as described in [1], leveraging a leading zero counter [2] and some glue logic.
 
-## What next?
 
-- [Submit your design to the next shuttle](https://app.tinytapeout.com/).
-- Edit [this README](README.md) and explain your design, how it works, and how to test it.
-- Share your project on your social network of choice:
-  - LinkedIn [#tinytapeout](https://www.linkedin.com/search/results/content/?keywords=%23tinytapeout) [@TinyTapeout](https://www.linkedin.com/company/100708654/)
-  - Mastodon [#tinytapeout](https://chaos.social/tags/tinytapeout) [@matthewvenn](https://chaos.social/@matthewvenn)
-  - X (formerly Twitter) [#tinytapeout](https://twitter.com/hashtag/tinytapeout) [@tinytapeout](https://twitter.com/tinytapeout)
+2.
+The addition leverages the architecture presented in [3].
+
+References
+
+[1] J. Gustafson. "Posit arithmetic." Mathematica Notebook describing the posit number system, 2017.
+
+[2] Milenković, Nebojša & Stankovic, Vladimir & Milić, Miljana. (2015). Modular Design Of Fast Leading Zeros Counting Circuit. Journal of Electrical Engineering. 66. 329-333. 10.2478/jee-2015-0054. 
+
+[3] R. Murillo, A. A. Del Barrio and G. Botella, "Customized Posit Adders and Multipliers using the FloPoCo Core Generator," 2020 IEEE International Symposium on Circuits and Systems (ISCAS), 2020, pp. 1-5, doi: 10.1109/ISCAS45731.2020.9180771.
+
+## How to test
+
+Given the comunication protocol implemented, to test the design it is needed to provide the two operands in 8-bit little endian strings.
+The steps to write two two 16-bit operands a and b are as follows:
+  1)  give the a[7:0] and assert data valid;
+  2)  wait for 4 clock cycles and deassert data valid;
+  3)  wait for 4 clock cycles;
+  4)  repeat with a[15:8], b[7:0] and b[15:8]
+
+The steps to read the data are as follows:
+  1) assert read data valid and read the first operand LSBs, a[7:0];
+  2) wait for 4 clock cycles and deassert read data valid;
+  3) wait for 8 clock cycles;
+  4) repeat to read a[15:8], b[7:0], b[15:8], {s,k,e} of a converted to posit (ap), {s,k,e} of b converted to posit (bp), m [15:8] of ap, m [7:0] of ap, m [15:8] of bp, m [7:0] of bp, sp[7:0] and sp[15:0].
+
+## Contact info
+Companies: (a) University of Salerno, Fisciano (SA), Italy; 
+            (b) STMicroelectronics, Napoli, Italy.
+Engineer: Andrea Fasolino (a), Gian Domenico Licciardo (a), Aldo Torino (b), Francesco Del Prete (b), Claudio Parrella (b).
+Emails: afasolino@unisa.it, gdlicciardo@unisa.it, aldo.torino@st.com, francesco.delprete@st.com, claudio.parrella@st.com
