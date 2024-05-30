@@ -29,7 +29,7 @@ module normalizer_16 #(parameter N=16) (
 	assign sozb = i_ozb;
 
 	assign count4 = (level5[N:1] == {16{sozb}}) ? 1: 0;
-	assign level4 =(!count4) ? level5 : {level5[0],{15{1'b0}}};
+	assign level4 =(!count4) ? level5 : {level5[0],{16{1'b0}}};
 
 	assign count3 = (level4[N:N-7] == {8{sozb}}) ? 1: 0;
 	assign level3 = (!count3) ? level4 : {level4[8:0],{8{1'b0}}};
