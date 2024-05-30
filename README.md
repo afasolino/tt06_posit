@@ -28,6 +28,18 @@ The conversion is operated as described in [1], leveraging a leading zero counte
 ### 2.
 The addition leverages the architecture presented in [3].
 
+Module inputs and outputs are stated in the next table:
+
+| mode  | signal |
+| :-------------: | :-------------: |
+| input  | $a_f$  |
+| input  | $b_f$  |
+| output  | $a_f$  |
+| output  | $b_f$  |
+| output  | $a_p$  |
+| output  | $b_p$  |
+| output  | $s_p$  |
+
 ### References
 
 [1] J. Gustafson. "Posit arithmetic." Mathematica Notebook describing the posit number system, 2017.
