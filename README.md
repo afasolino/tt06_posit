@@ -49,7 +49,7 @@ The steps to read the data are as follows:
   1) assert read data valid and read the first operand LSBs, a[7:0];
   2) wait for 4 clock cycles and deassert read data valid;
   3) wait for 8 clock cycles;
-  4) repeat to read $a_f$[15:8], $b_f$[7:0], $b_f$[15:8], {s,k,e} of a converted to posit ($a_p$), {s,k,e} of b converted to posit ($b_p$), m [15:8] of $a_p$, m [7:0] of $a_p$, m [15:8] of $b_p$, m [7:0] of $b_p$, $s_p$[7:0] and $s_p%[15:0].
+  4) repeat to read $a_f$[15:8], $b_f$[7:0], $b_f$[15:8], {s,k,e} of a converted to posit ($a_p$), {s,k,e} of b converted to posit ($b_p$), m [15:8] of $a_p$, m [7:0] of $a_p$, m [15:8] of $b_p$, m [7:0] of $b_p$, $s_p$[7:0] and $s_p$[15:0].
 
 ## 3. Contact info
 
