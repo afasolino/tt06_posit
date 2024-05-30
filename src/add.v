@@ -52,7 +52,6 @@ module add #(parameter N=16) (
   wire is_not_zero ;
   wire is_nar;
   wire Xi_nzn_2;
-  wire [N-5:0]norm_mant ;
 
   assign X_not_zero = i_s_1 | i_nzn_1;
   assign X_nar      = i_s_1 & ~(i_nzn_1);
@@ -97,7 +96,7 @@ module add #(parameter N=16) (
     ( .i_ozb  (count_type),
       .i_in   (add_mant_shift),
       .o_count(count),
-      .o_r  (norm_mant_tmp)
+      .o_r  (_tmp)
     );
 
   assign add_sf = {larger_number[5] , larger_number} - ({2'b00 , count}) + 1;
