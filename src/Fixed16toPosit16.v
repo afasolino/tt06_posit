@@ -65,49 +65,49 @@ assign mantissa = (first_regime_bit) ? -mantissa_compl : mantissa_compl;
 always @(*)
 case (x)
       4'b0001: begin
-                  mantissa_compl <= fixed_number [13:2];  //
+                  mantissa_compl = fixed_number [13:2];  //
                end
       4'b0010: begin
-                  mantissa_compl <= fixed_number [12:1];  //
+                  mantissa_compl = fixed_number [12:1];  //
                end
       4'b0011: begin
-                  mantissa_compl <= fixed_number [11:0];  //
+                  mantissa_compl = fixed_number [11:0];  //
                end
       4'b0100: begin
-                  mantissa_compl <= {fixed_number [10:0],1'b0};  //
+                  mantissa_compl = {fixed_number [10:0],1'b0};  //
                end
       4'b0101: begin
-                  mantissa_compl <= {fixed_number [9:0],2'b00};  //
+                  mantissa_compl = {fixed_number [9:0],2'b00};  //
                end
       4'b0110: begin
-                  mantissa_compl <= {fixed_number [8:0],3'b000};  //
+                  mantissa_compl = {fixed_number [8:0],3'b000};  //
                end
       4'b0111: begin
-                  mantissa_compl <= {fixed_number [7:0],4'b0000};  //
+                  mantissa_compl = {fixed_number [7:0],4'b0000};  //
                end
       4'b1000: begin
-                  mantissa_compl <= {fixed_number [6:0],5'b00000};  //
+                  mantissa_compl = {fixed_number [6:0],5'b00000};  //
                end
       4'b1001: begin
-                  mantissa_compl <= {fixed_number [5:0],6'b000000};  //
+                  mantissa_compl = {fixed_number [5:0],6'b000000};  //
                end
       4'b1010: begin
-                  mantissa_compl <= {fixed_number [4:0],7'b0000000};  //
+                  mantissa_compl = {fixed_number [4:0],7'b0000000};  //
                end
       4'b1011: begin
-                  mantissa_compl <= {fixed_number [3:0],8'b00000000};  //
+                  mantissa_compl = {fixed_number [3:0],8'b00000000};  //
                end
       4'b1100: begin
-                  mantissa_compl <= {fixed_number [2:0],9'b000000000};  //
+                  mantissa_compl = {fixed_number [2:0],9'b000000000};  //
                end
       4'b1101: begin
-                  mantissa_compl <= {fixed_number [1:0],10'b0000000000};  //
+                  mantissa_compl = {fixed_number [1:0],10'b0000000000};  //
                end
       4'b1110: begin
-                  mantissa_compl <= {fixed_number [0],11'b00000000000};  //
+                  mantissa_compl = {fixed_number [0],11'b00000000000};  //
                 end
       default: begin
-                  mantissa_compl <= {12'b00000000000};  //
+                  mantissa_compl = {12'b00000000000};  //
                 end
    endcase
 				
