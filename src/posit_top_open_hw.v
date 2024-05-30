@@ -27,7 +27,7 @@ module posit_top_open_hw #(parameter  N=16) (
   wire w_sign_2;
   wire w_exponent_2;
   wire [3:0]w_regime_value_2;
-
+  wire w_s_res_add;
 
 
 
