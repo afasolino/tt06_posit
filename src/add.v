@@ -96,7 +96,7 @@ module add #(parameter N=16) (
     ( .i_ozb  (count_type),
       .i_in   (add_mant_shift),
       .o_count(count),
-      .o_r  (_tmp)
+      .o_r  (norm_mant_tmp)
     );
 
   assign add_sf = {larger_number[5] , larger_number} - ({2'b00 , count}) + 1;
